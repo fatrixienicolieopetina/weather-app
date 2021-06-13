@@ -1,7 +1,7 @@
 # weather-app
 Entry to TOP weather app project
 
-##Learning Outcome
+## Learning Outcome
 1. Working with APIs
 2. CORS
 3. Promises and callbacks
