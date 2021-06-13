@@ -45,6 +45,18 @@ body {
     margin-left: 2vw;
 }
 
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: black;
+    color: white;
+    text-align: center;
+    opacity: 80%;
+    padding: 10px;
+}
+
 @media only screen and (max-width: 800px) {
     .search-location {
         font-size: 5vw;
