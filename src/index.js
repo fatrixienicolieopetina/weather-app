@@ -16,7 +16,7 @@ const WeatherApp = function() {
     }
     
     function getWeatherByLocation(location) {
-        const WEATHER_URL = `http://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&APPID=99f5272715d7e5ecca0f597fb1ad1d54`;
+        const WEATHER_URL = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&APPID=99f5272715d7e5ecca0f597fb1ad1d54`;
         
         let weatherData = fetch(WEATHER_URL)
         .then(function(response) {
@@ -76,7 +76,7 @@ const WeatherApp = function() {
             setBackgroundImage(DEFAULT_BG_GIPHY_ID);
         } else {
             descriptionElement.innerText = results['weatherDescription'];
-            imgElement.setAttribute('src', `http://openweathermap.org/img/wn/${results['weatherIcon']}@2x.png`)
+            imgElement.setAttribute('src', `https://openweathermap.org/img/wn/${results['weatherIcon']}@2x.png`)
             cityElement.innerText = `${results['city']}, ${results['country']}`;
             tempElement.innerHTML = `${results['temperature']}&deg;C`;
             changeBgDependingOnDescription(results['id']);
@@ -124,7 +124,7 @@ const WeatherApp = function() {
         } else if(id >= 800) {
             giphyId = CLOUDS_BG_GIPGY_ID;
         } 
-        
+
         setBackgroundImage(giphyId);
     }
     
