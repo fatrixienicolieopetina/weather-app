@@ -1,0 +1,32 @@
+/*
+ * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+/******/ (() => { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/index.js":
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+/***/ (() => {
+
+eval("const WeatherApp = function() {\n    const GIPHY_API_KEY = \"Yw4tONoc5wmCrKPVxoEUbFuCULiYewG0\";\n    const ERROR = \"ERROR\";\n    const DEFAULT_BG_GIPHY_ID = \"ZxLr4sFdcSRVhajXli\";\n\n    function setBackgroundImage(bgGiphyId) {\n        const img = document.querySelector('img');\n        fetch(`https://api.giphy.com/v1/gifs/${bgGiphyId}?api_key=${GIPHY_API_KEY}`, \n               {mode: 'cors'})\n        .then(function(response) {\n            return response.json();\n        })\n        .then(function(response) {\n            document.body.style.backgroundImage = `url('${response.data.images.original.url}')`;\n        });\n    }\n    \n    function getWeatherByLocation(location) {\n        const WEATHER_URL = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&APPID=99f5272715d7e5ecca0f597fb1ad1d54`;\n        \n        let weatherData = fetch(WEATHER_URL)\n        .then(function(response) {\n            if(!response.ok) {\n                throw Error(response.statusText);\n            }\n            return response.json();\n        })\n        .then(function(response) {\n            let temp = response['main']['temp'];\n            let city = response['name'];\n            let weather = response['weather'][0];\n            let country = response['sys']['country'];\n            let weatherDescription = weather['description'];\n            let weatherIcon = weather['icon'];\n            \n            if(country == undefined) {\n                country = 'N/A';\n            }\n    \n            return {\n                id: response['weather'][0]['id'],\n                temperature : temp,\n                city: city,\n                weatherDescription : weatherDescription,\n                weatherIcon: weatherIcon,\n                country: country\n            };\n            \n        }).catch(function() {\n            return ERROR;\n        });\n    \n        return weatherData;\n    }\n    \n    function setWeatherResults(location) {\n        getWeatherByLocation(location)\n        .then(\n            function(results) {\n                changeDisplay(results);\n            }\n        );\n    }\n\n    function changeDisplay(results) {\n        let descriptionElement = document.getElementById('description');\n        let cityElement = document.getElementById('city');\n        let tempElement = document.getElementById('temperature');\n        let imgElement = document.getElementById('weather-icon');\n\n        if(results === ERROR) {\n            descriptionElement.innerText = \"NOT FOUND\";\n            imgElement.setAttribute('src', \"notfound.png\");\n            cityElement.innerText = '';\n            tempElement.innerHTML = '';\n            setBackgroundImage(DEFAULT_BG_GIPHY_ID);\n        } else {\n            descriptionElement.innerText = results['weatherDescription'];\n            imgElement.setAttribute('src', `https://openweathermap.org/img/wn/${results['weatherIcon']}@2x.png`)\n            cityElement.innerText = `${results['city']}, ${results['country']}`;\n            tempElement.innerHTML = `${results['temperature']}&deg;C`;\n            changeBgDependingOnDescription(results['id']);\n        }\n    }\n    \n    function addEventListenerToSearchLocationButton() {\n        let searchBtn = document.getElementById('search-location');\n        let input = document.getElementById(\"input-location\");\n    \n        searchBtn.addEventListener(\"click\", function() {setWeatherResults(input.value)});\n        document.addEventListener(\"keypress\", function(e) {\n            if(e.key === 'Enter') {\n                if(input.value !== '') {\n                    setWeatherResults(input.value);\n                    input.value = '';\n                }\n                \n            }\n        });\n    }\n    \n    function changeBgDependingOnDescription(id) {\n        let giphyId = DEFAULT_BG_GIPHY_ID;\n        const THUNDERSTORM_BG_GIPGY_ID = \"3osxYzIQRqN4DOEddC\";\n        const DRIZZLE_BG_GIPGY_ID = \"xT9GEz2CeU9uaI2KZi\";\n        const RAIN_BG_GIPGY_ID = \"3oKIPstwMF15FghbYQ\";\n        const SNOW_BG_GIPGY_ID = \"6YNgoTEPs6vZe\";\n        const ATMOSPHERE_BG_GIPGY_ID = \"hTgdcNl4LXLlOelNvZ\";\n        const CLEAR_BG_GIPGY_ID = \"wNipYAoZ3iaEE\";\n        const CLOUDS_BG_GIPGY_ID = \"oNXIP3xpr00k05NVPQ\";\n\n        if(id >= 200 && id < 300) {\n            giphyId = THUNDERSTORM_BG_GIPGY_ID;\n        } else if(id >= 300 && id < 400) {\n            giphyId = DRIZZLE_BG_GIPGY_ID;\n        } else if(id >= 500 && id < 600) {\n            giphyId = RAIN_BG_GIPGY_ID;\n        } else if(id >= 600 && id < 700) {\n            giphyId = SNOW_BG_GIPGY_ID;\n        } else if(id >= 700 && id < 800) {\n            giphyId = ATMOSPHERE_BG_GIPGY_ID;\n        } else if(id == 800) {\n            giphyId = CLEAR_BG_GIPGY_ID;\n        } else if(id >= 800) {\n            giphyId = CLOUDS_BG_GIPGY_ID;\n        } \n\n        setBackgroundImage(giphyId);\n    }\n    \n    function init() {\n        setWeatherResults('Cebu');\n        addEventListenerToSearchLocationButton();\n    }\n\n    return {init}\n}();\n\nWeatherApp.init();\n\n//# sourceURL=webpack://weather-app/./src/index.js?");
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	var __webpack_exports__ = {};
+/******/ 	__webpack_modules__["./src/index.js"]();
+/******/ 	
+/******/ })()
+;
