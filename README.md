@@ -1,5 +1,6 @@
 # weather-app
 Entry to TOP weather app project
+
 ##Learning Outcome
 1. Working with APIs
 2. CORS
