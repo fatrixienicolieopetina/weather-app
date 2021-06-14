@@ -30,15 +30,15 @@ body {
 }
 
 #description {
-    font-size: 4em;
+    font-size: 4vw;
 }
 
 #city {
-    font-size: 5em;
+    font-size: 5vw;
 }
 
 #temperature {
-    font-size: 7em;
+    font-size: 7vw;
 }
 
 #results-container {
@@ -60,5 +60,17 @@ footer {
 @media only screen and (max-width: 800px) {
     .search-location {
         font-size: 5vw;
+    }
+
+    #description {
+        font-size: 4vh;
+    }
+    
+    #city {
+        font-size: 5vh;
+    }
+    
+    #temperature {
+        font-size: 7vh;
     }
   }
